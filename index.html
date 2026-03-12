@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 환경 프로젝트 봉사활동</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            min-height: 300px;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (min-width: 768px) { .card-hover:hover { transform: translateY(-8px); } }
+        
+        .touch-target { min-height: 44px; }
+    </style>
+</head>
+<body class="bg-stone-50 text-gray-800 antialiased selection:bg-emerald-200">
+
+    <!-- 내비게이션 -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl md:text-2xl">🌍</span>
+                    <span class="font-bold text-emerald-800 text-base md:text-lg tracking-tight">2026 환경 프로젝트 봉사활동</span>
+                </div>
+                <div class="hidden sm:flex space-x-6 md:space-x-8">
+                    <a href="#prep" class="text-xs md:text-sm font-medium text-stone-600 hover:text-emerald-600">모집안내</a>
+                    <a href="#pillars" class="text-xs md:text-sm font-medium text-stone-600 hover:text-emerald-600">실천가이드</a>
+                    <a href="#strategy" class="text-xs md:text-sm font-medium text-stone-600 hover:text-emerald-600">운영전략</a>
+                    <a href="#dashboard" class="text-xs md:text-sm font-medium text-stone-600 hover:text-emerald-600">임팩트</a>
+                </div>
+                <div class="sm:hidden text-emerald-600 font-bold text-[10px] border border-emerald-200 px-2 py-1 rounded">MENU</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <header id="vision" class="pt-12 pb-12 md:pt-24 md:pb-20 px-4 text-center bg-gradient-to-b from-emerald-50 to-stone-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-3 py-1 mb-4 md:mb-6 rounded-full bg-emerald-100 text-emerald-800 text-[10px] md:text-xs font-bold tracking-wider uppercase">
+                고등학교 주도형 자원순환 캠페인
+            </div>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-stone-900 mb-4 md:mb-6 leading-tight break-keep">
+                2026 환경 프로젝트 봉사활동<br>
+                <span id="projectNameDisplay" class="text-emerald-600 transition-all duration-300 block mt-2 text-2xl md:text-4xl lg:text-5xl font-bold">오늘도 지구편</span>
+            </h1>
+            <p class="text-sm md:text-lg text-stone-600 mb-8 leading-relaxed px-4 break-keep">
+                3월 신입생 OT 환경 교육의 감동을 실천으로 이어갑니다. <br class="hidden md:block">
+                학생 스스로 계획하고 운영하는 9개월의 eco-여정에 동참하세요.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 space-y-24 md:space-y-40">
+
+        <!-- 1. 모집 및 사전 일정 (수정 반영) -->
+        <section id="prep" class="scroll-mt-20">
+            <div class="bg-white border border-stone-200 rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-sm">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- 왼쪽: 모집 요강 -->
+                    <div class="flex-1 p-8 md:p-12 bg-emerald-50/50">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-emerald-100 text-emerald-700 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                            Recruitment Guide
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-8 break-keep">지구를 구하는 24인의 대원 모집</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl shrink-0">📅</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-800 text-sm md:text-base">인원 모집 기간</h4>
+                                    <p class="text-emerald-700 font-bold text-lg md:text-xl">3/16(월) — 3/20(금)</p>
+                                    <p class="text-xs text-stone-500 mt-1">온라인 폼을 통해 접수 (제출 내용의 진정성에 따라 선발됩니다.)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl shrink-0">👥</div>
+                                <div>
+                                    <h4 class="font-bold text-stone-800 text-sm md:text-base">모집 인원 및 구성</h4>
+                                    <p class="text-emerald-700 font-bold text-lg md:text-xl">총 24명 이내</p>
+                                    <p class="text-xs text-stone-600 mt-1 font-medium bg-white px-2 py-1 rounded border border-emerald-100 inline-block italic">
+                                        ※ 각 반별 최소 1명 이상 참여 권장
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://forms.gle/9st4hoE48SfK6N4f7" target="_blank" class="mt-10 block w-full py-4 bg-emerald-600 text-white text-center rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg active:scale-[0.98]">
+                            프로젝트 대원 신청하기
+                        </a>
+                    </div>
+
+                    <!-- 오른쪽: OT 일정 및 회의 내용 -->
+                    <div class="flex-1 p-8 md:p-12 border-t lg:border-t-0 lg:border-l border-stone-100">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-stone-100 text-stone-600 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                            Preparation Week
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">OT 주간 안내</h2>
+                        <p class="text-emerald-600 font-bold text-lg mb-8 underline decoration-emerald-200 underline-offset-4">3/23(월) — 3/27(금)</p>
+                        
+                        <div class="space-y-4">
+                            <h4 class="text-sm font-bold text-stone-500 uppercase tracking-tighter">주요 회의 안건 (Agenda)</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-center gap-4 card-hover">
+                                    <span class="text-xl">🤝</span>
+                                    <div>
+                                        <p class="font-bold text-stone-800">인사 나누기</p>
+                                        <p class="text-xs text-stone-500">팀별 아이스브레이킹 및 비전 공유</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-center gap-4 card-hover">
+                                    <span class="text-xl">📅</span>
+                                    <div>
+                                        <p class="font-bold text-stone-800">일정 확정 짓기</p>
+                                        <p class="text-xs text-stone-500">월별 세부 활동 일시 및 장소 최종 픽스</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-center gap-4 card-hover">
+                                    <span class="text-xl">⚡</span>
+                                    <div>
+                                        <p class="font-bold text-stone-800">역할 정하기</p>
+                                        <p class="text-xs text-stone-500">기록팀, 홍보팀, 실천팀 등 업무 배정</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 세부 활동 가이드 -->
+        <section id="pillars" class="scroll-mt-20">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-stone-800 mb-3 md:mb-4">세부 활동 가이드</h2>
+                <p class="text-stone-600 text-sm md:text-base max-w-2xl mx-auto px-4 break-keep">일상의 변화를 기록으로 남기고, 학교 전체로 확산시키는 3대 실천 영역입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 border border-stone-200 shadow-sm card-hover">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-100 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl mb-6">🥤</div>
+                    <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-4">[스스로] 용기내기</h3>
+                    <div class="space-y-3 text-xs md:text-sm text-stone-600">
+                        <div class="p-3 bg-emerald-50/50 rounded-lg border border-emerald-100">
+                            <p class="font-bold text-emerald-800 mb-1">My Bottle Day</p>
+                            <p>매주 수요일은 개인 컵을 사용하는 날로 지정하여 전교생 캠페인을 진행합니다.</p>
+                        </div>
+                        <div class="p-3 bg-emerald-50/50 rounded-lg border border-emerald-100">
+                            <p class="font-bold text-emerald-800 mb-1">스티커 챌린지</p>
+                            <p>사용 인증 시 '1회용품 거절' 스티커를 텀블러에 부착해 드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 border border-stone-200 shadow-sm card-hover">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-teal-100 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl mb-6">📝</div>
+                    <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-4">[기록] 에코 로그</h3>
+                    <div class="space-y-3 text-xs md:text-sm text-stone-600">
+                        <div class="p-3 bg-teal-50/50 rounded-lg border border-teal-100">
+                            <p class="font-bold text-teal-800 mb-1">쓰레기 기록장</p>
+                            <p>배출 종류, 감축 방법, 소감을 기록하여 나의 변화를 데이터로 만듭니다.</p>
+                        </div>
+                        <div class="p-3 bg-teal-50/50 rounded-lg border border-teal-100">
+                            <p class="font-bold text-teal-800 mb-1">수기 공모전</p>
+                            <p>'나의 쓰레기 다이어트 100일' 등의 주제로 변화의 감동을 나눕니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 border border-stone-200 shadow-sm card-hover">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-100 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl mb-6">🤝</div>
+                    <h3 class="text-lg md:text-xl font-bold text-stone-800 mb-4">[함께] 나눔 존</h3>
+                    <div class="space-y-3 text-xs md:text-sm text-stone-600">
+                        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100">
+                            <p class="font-bold text-blue-800 mb-1">Shared Shelf</p>
+                            <p>깨끗한 물건만 가져오는 '양심 운영 시스템'으로 학교 내 공유 문화를 만듭니다.</p>
+                        </div>
+                        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100">
+                            <p class="font-bold text-blue-800 mb-1">테마 데이</p>
+                            <p>6월은 문구류, 10월은 교복/체육복 등 월별 테마 나눔 활동을 운영합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 운영 전략 -->
+        <section id="strategy" class="scroll-mt-20">
+            <div class="bg-stone-900 rounded-2xl md:rounded-[3rem] p-8 md:p-16 text-white overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-emerald-500/10 blur-[80px] md:blur-[100px] rounded-full"></div>
+                <div class="relative z-10">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 flex items-center gap-3">
+                        <span class="text-emerald-400">💡</span> 프로젝트 운영 전략
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                        <div>
+                            <span class="text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-widest">Scientific</span>
+                            <h3 class="text-lg md:text-xl font-bold mt-2 mb-3">데이터 시각화</h3>
+                            <p class="text-stone-400 text-xs md:text-sm leading-relaxed">중앙 현관에 '에코 스코어 보드'를 게시하여 모인 자원 무게와 탄소 절감량($CO_2eq$)을 실시간으로 공유합니다.</p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-widest">Engagement</span>
+                            <h3 class="text-lg md:text-xl font-bold mt-2 mb-3">참여 유도 보상</h3>
+                            <p class="text-stone-400 text-xs md:text-sm leading-relaxed">인스타 릴스 챌린지를 활성화하고, 대나무 칫솔이나 친환경 비누 등 활동 취지에 맞는 친환경 리워드를 제공합니다.</p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] md:text-xs font-bold text-emerald-400 uppercase tracking-widest">Portfolio</span>
+                            <h3 class="text-lg md:text-xl font-bold mt-2 mb-3">진로 연계 기록</h3>
+                            <p class="text-stone-400 text-xs md:text-sm leading-relaxed">활동 보고 소책자를 발간하여 생기부 근거 자료로 활용하며, 기업 피드백 공유로 효능감을 줍니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 월별 여정 타임라인 -->
+        <section id="timeline" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-4xl font-bold text-stone-800 mb-3 md:mb-4">에코 로그(Eco-Log) 타임라인</h2>
+                <div id="monthSelector" class="flex overflow-x-auto hide-scrollbar gap-2 py-4 px-2 justify-start md:justify-center"></div>
+            </div>
+            <div id="monthDetailCard" class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-12 border border-stone-200 shadow-sm min-h-[250px] md:min-h-[300px] flex flex-col justify-center"></div>
+        </section>
+
+        <!-- 5. 예측 임팩트 -->
+        <section id="dashboard" class="scroll-mt-20 pb-20">
+            <div class="text-center mb-8 md:mb-10">
+                <h2 class="text-2xl md:text-4xl font-bold text-stone-800 mb-3 md:mb-4">변화의 임팩트</h2>
+                <p class="text-stone-600 text-sm md:text-base px-4">우리의 활동이 만드는 긍정적인 환경 데이터의 흐름입니다.</p>
+            </div>
+            <div class="bg-white rounded-2xl md:rounded-3xl shadow-sm border border-stone-200 p-4 md:p-10">
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-500 py-12 text-center border-t border-stone-800 px-4">
+        <div class="max-w-6xl mx-auto">
+            <p class="mb-2 text-stone-300 text-sm md:text-base">2026 환경 프로젝트 운영위원회</p>
+            <p class="text-[10px] md:text-sm text-stone-500 mb-6">In association with Green Steps Student League</p>
+            <div class="flex justify-center gap-4 md:gap-6 grayscale opacity-30 select-none">
+                <span class="text-base md:text-xl font-black italic">ECO-LOG</span>
+                <span class="text-base md:text-xl font-black italic">EARTH-FIRST</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 프로젝트 명 자동 변경 효과
+        const projectNames = ["오늘도 지구편", "에코-로그 (Eco-Log)", "지·수·함 (지구 수호대)", "Green Steps"];
+        const nameDisplay = document.getElementById('projectNameDisplay');
+        let currentNameIndex = 0;
+
+        setInterval(() => {
+            nameDisplay.style.opacity = 0;
+            setTimeout(() => {
+                currentNameIndex = (currentNameIndex + 1) % projectNames.length;
+                nameDisplay.textContent = projectNames[currentNameIndex];
+                nameDisplay.style.opacity = 1;
+            }, 300);
+        }, 3000);
+
+        // 월별 데이터
+        const scheduleData = [
+            { month: "4월", phase: "시작", title: "발대식 & 캠페인 선포", desc: "My Bottle Day를 공식 선포하고 프로젝트 대원들의 위촉식을 진행합니다. 전교생에게 다회용기 사용 참여를 독려합니다.", icon: "🌱" },
+            { month: "5월", phase: "확산", title: "굿즈 제작 및 배포", desc: "학생들이 직접 디자인한 1회용품 거절 스티커와 학교 에코 굿즈를 배포하여 캠페인 참여 분위기를 고조시킵니다.", icon: "🎨" },
+            { month: "6월", phase: "기록", title: "기록장 배포 & 나눔 존", desc: "쓰레기 기록장을 배포하여 데이터 수집을 시작합니다. 동시에 교내 물건 나눔 공간인 'Shared Shelf'를 오픈합니다.", icon: "♻️" },
+            { month: "7월", phase: "재생", title: "업사이클링 클래스", desc: "나눔 존에 모인 물건 중 수선이 필요한 것을 선별하여 가치를 더하는 리폼 및 업사이클링 클래스를 운영합니다.", icon: "✂️" },
+            { month: "8월", phase: "실천", title: "디지털 탄소 발자국 지우기", desc: "메일함 비우기, 다크모드 설정 등 눈에 보이지 않는 탄소를 줄이는 법을 교육하고 방학 중 제로 웨이스트 챌린지를 진행합니다.", icon: "💻" },
+            { month: "9월", phase: "수거", title: "미니 자원순환 센터", desc: "우유팩, 멸균팩 등 일반 쓰레기로 버려지기 쉬운 자원을 수거하여 종량제 봉투 등으로 교환해 학교에 재기부합니다.", icon: "🔄" },
+            { month: "10월", phase: "정화", title: "생태 하천 플로깅", desc: "학교 주변 하천 쓰레기를 수거하고 성상을 분석합니다. 동시에 교복/체육복 테마 나눔 데이를 운영합니다.", icon: "🌊" },
+            { month: "11월", phase: "목소리", title: "기업 쓰레기 어택", desc: "과대 포장재를 모아 해당 기업에 개선 요구 서명문과 함께 발송합니다. 기업의 답변을 공유하며 사회적 연대를 배웁니다.", icon: "📢" },
+            { month: "12월", phase: "완성", title: "성과 전시 & 소책자 발간", desc: "연간 탄소 절감 데이터를 전시하고 1년간의 활동 기록을 담은 소책자를 발간하여 활동을 마무리합니다.", icon: "🏆" }
+        ];
+
+        const monthSelector = document.getElementById('monthSelector');
+        const detailCard = document.getElementById('monthDetailCard');
+
+        function renderDetailCard(data) {
+            detailCard.classList.remove('fade-in');
+            void detailCard.offsetWidth; 
+            detailCard.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
+                    <div class="w-20 h-20 md:w-28 md:h-28 bg-emerald-50 rounded-2xl md:rounded-3xl flex items-center justify-center text-4xl md:text-6xl shadow-inner shrink-0">${data.icon}</div>
+                    <div class="text-center md:text-left">
+                        <div class="flex flex-col md:flex-row items-center gap-2 mb-3">
+                            <span class="px-2 py-0.5 bg-emerald-600 text-white text-[10px] md:text-xs font-bold rounded-full uppercase">${data.phase} 단계</span>
+                            <span class="text-xl md:text-2xl font-black text-stone-800">${data.month}: ${data.title}</span>
+                        </div>
+                        <p class="text-stone-600 text-sm md:text-lg leading-relaxed max-w-2xl break-keep">${data.desc}</p>
+                    </div>
+                </div>
+            `;
+            detailCard.classList.add('fade-in');
+        }
+
+        scheduleData.forEach((item, index) => {
+            const btn = document.createElement('button');
+            btn.className = `touch-target px-5 py-2 rounded-full font-bold text-xs md:text-sm whitespace-nowrap transition-all duration-200 border ${index === 0 ? 'bg-emerald-600 text-white border-emerald-600 shadow-md' : 'bg-white text-stone-500 border-stone-200 hover:bg-stone-50'}`;
+            btn.textContent = item.month;
+            btn.onclick = () => {
+                document.querySelectorAll('#monthSelector button').forEach(b => {
+                    b.className = 'touch-target px-5 py-2 rounded-full font-bold text-xs md:text-sm whitespace-nowrap transition-all duration-200 border bg-white text-stone-500 border-stone-200 hover:bg-stone-50';
+                });
+                btn.className = 'touch-target px-5 py-2 rounded-full font-bold text-xs md:text-sm whitespace-nowrap transition-all duration-200 border bg-emerald-600 text-white border-emerald-600 shadow-md';
+                renderDetailCard(item);
+            };
+            monthSelector.appendChild(btn);
+        });
+
+        renderDetailCard(scheduleData[0]);
+
+        // 차트 설정
+        const ctx = document.getElementById('impactChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [
+                    { label: '참여 학생 수(명)', data: [65, 130, 170, 230, 280, 320, 380, 430, 500], borderColor: '#059669', backgroundColor: 'rgba(5, 150, 105, 0.05)', fill: true, tension: 0.4 },
+                    { label: 'CO2 감축(kg)', data: [28, 60, 110, 160, 220, 280, 320, 400, 450], borderColor: '#0ea5e9', borderDash: [5, 5], tension: 0.4 }
+                ]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: '#f3f4f6' }, ticks: { font: { size: 10 } } }, 
+                    x: { grid: { display: false }, ticks: { font: { size: 10 } } } 
+                }
+            }
+        });
+    </script>
+</body>
+</html>
